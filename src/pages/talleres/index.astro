@@ -10,42 +10,46 @@ interface Workshop {
   description: string;
   bookHref?: string;
   bookLabel?: string;
+  referenceHref?: string;
+  referenceLabel?: string;
 }
 
 const workshops: Workshop[] = [
   {
     number: '01',
     title: 'Encuentro con el autor',
-    meta: 'Literatura · tertulia',
+    meta: 'Animación lectora · tertulia literaria',
     description:
-      'Una tertulia literaria en torno a cualquiera de los libros publicados por Jorge Morcillo. Un espacio para conversar sobre la obra elegida y compartir preguntas e impresiones con el autor.',
+      'Un encuentro literario en torno a cualquiera de los libros publicados por Jorge Morcillo. La sesión se plantea como una tertulia abierta para conversar sobre la historia elegida, sus personajes y temas, el proceso de escritura y las preguntas de los lectores. Una propuesta de animación a la lectura para centros educativos, bibliotecas, clubes de lectura y espacios culturales.',
     bookHref: '/#libros',
     bookLabel: 'Ver libros publicados'
   },
   {
     number: '02',
     title: 'Cuentos valencianos: lectura y mural',
-    meta: 'Lectura · creación plástica',
+    meta: 'Literatura · cultura valenciana · creación plástica',
     description:
-      'Una breve lectura de Cuentos valencianos para compartir acompañada de una actividad plástica en grupo: pintar murales inspirados en el cuento trabajado.',
+      'Taller literario y creativo a partir de Cuentos valencianos para compartir. Comienza con una breve lectura de uno de los relatos y continúa con una actividad plástica colectiva: crear y pintar murales inspirados en el cuento trabajado. Literatura, imaginación, folclore y cultura valenciana se convierten así en una experiencia participativa.',
     bookHref: '/libros/cuentos-valencianos-para-compartir/',
     bookLabel: 'Ver Cuentos valencianos para compartir'
   },
   {
     number: '03',
     title: 'Cultura millennial y tecnología vintage',
-    meta: 'Literatura · memoria tecnológica',
+    meta: 'Literatura juvenil · cultura millennial · tecnología',
     description:
-      'Varios fragmentos de Mi padre es un Millennial sirven como punto de partida para conocer la cultura millennial y manipular elementos tecnológicos vintage, como un Discman o una consola de 16 bits.',
+      'Un recorrido por la cultura millennial a través de fragmentos de Mi padre es un Millennial y del contacto directo con tecnología de otra época. Un Discman, una consola de 16 bits y otros objetos sirven para hablar de ocio, comunicación y vida cotidiana antes del smartphone, y para comparar cómo han cambiado los hábitos entre generaciones.',
     bookHref: '/libros/mi-padre-es-un-millennial/',
     bookLabel: 'Ver Mi padre es un Millennial'
   },
   {
     number: '04',
-    title: 'Taller de periodismo',
+    title: 'Taller de periodismo para Secundaria',
     meta: 'Secundaria · 1 mes · 2 h semanales',
     description:
-      'Dirigido a los dos primeros ciclos de Secundaria. Durante un mes, con dos horas semanales, el alumnado conoce las principales tipologías textuales periodísticas y trabaja especialmente cómo redactar una noticia.'
+      'Programa práctico dirigido a los dos primeros ciclos de Secundaria. Durante un mes, con dos horas semanales, el alumnado conoce las principales tipologías textuales periodísticas y aprende especialmente a redactar una noticia: seleccionar la información relevante, ordenar los datos, construir un titular y escribir con claridad. El taller conecta con la experiencia de Periodistas Junior, proyecto diseñado por Jorge Morcillo en el que estudiantes trabajaron como una pequeña redacción periodística.',
+    referenceHref: 'https://www.elperiodic.com/alboraya/escolares-entrevistan-concejal-manuel-duenas_276770',
+    referenceLabel: 'Ver la experiencia «Periodistas Junior» en El Periodic'
   }
 ];
 
@@ -54,8 +58,8 @@ const workshopMailto = (title: string) =>
 ---
 
 <SiteLayout
-  title="Talleres"
-  description="Talleres de Jorge Morcillo Jareño: encuentros con el autor, actividades a partir de sus libros y formación práctica en periodismo para Secundaria."
+  title="Talleres literarios y educativos"
+  description="Talleres literarios y educativos de Jorge Morcillo para centros, bibliotecas y espacios culturales: encuentros con autor, lectura, cultura millennial y periodismo."
   image="/assets/img/talleres/jorge-morcillo-talleres.webp"
   imageAlt="Retrato de Jorge Morcillo Jareño en un aula"
   imageWidth={1672}
@@ -70,11 +74,11 @@ const workshopMailto = (title: string) =>
       <p class="section-kicker">Literatura · cultura · aula</p>
       <h1>Talleres</h1>
       <p class="section-hero__lead">
-        Propuestas para trabajar la lectura, la memoria cultural y el periodismo de forma participativa. Para consultar disponibilidad o plantear una actividad, puedes escribir directamente a Jorge.
+        Talleres literarios y educativos para centros escolares, bibliotecas, clubes de lectura y espacios culturales. Jorge Morcillo propone actividades participativas que conectan los libros con la cultura valenciana, la memoria generacional, la creatividad y el periodismo.
       </p>
       <div class="section-hero__actions">
         <a class="button-link button-link--primary" href={`mailto:${site.contactEmail}?subject=${encodeURIComponent('Consulta sobre talleres')}`}>
-          Consultar talleres
+          Consultar disponibilidad
         </a>
       </div>
     </div>
@@ -91,7 +95,7 @@ const workshopMailto = (title: string) =>
     </figure>
   </header>
 
-  <section class="workshops-list" aria-label="Talleres disponibles">
+  <section class="workshops-list" aria-label="Talleres literarios y educativos disponibles">
     {workshops.map((workshop) => (
       <article class="workshop-card">
         <div class="workshop-card__index" aria-hidden="true">{workshop.number}</div>
@@ -104,6 +108,17 @@ const workshopMailto = (title: string) =>
           {workshop.bookHref && workshop.bookLabel && (
             <a class="text-link workshop-card__book" href={workshop.bookHref}>
               {workshop.bookLabel} <span aria-hidden="true">→</span>
+            </a>
+          )}
+
+          {workshop.referenceHref && workshop.referenceLabel && (
+            <a
+              class="text-link workshop-card__book"
+              href={workshop.referenceHref}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {workshop.referenceLabel} <span aria-hidden="true">↗</span>
             </a>
           )}
         </div>
@@ -120,11 +135,11 @@ const workshopMailto = (title: string) =>
   <section class="workshops-contact" aria-labelledby="workshops-contact-title">
     <div>
       <p class="section-kicker">Contratación</p>
-      <h2 id="workshops-contact-title">¿Quieres organizar uno?</h2>
+      <h2 id="workshops-contact-title">Organiza un taller</h2>
     </div>
     <div class="workshops-contact__copy">
       <p>
-        Escribe indicando qué taller te interesa y desde dónde contactas para concretar la propuesta.
+        Las propuestas pueden plantearse para centros educativos, bibliotecas, clubes de lectura, librerías y otras entidades culturales. Escribe indicando el taller que te interesa y desde dónde contactas para consultar disponibilidad y concretar la actividad.
       </p>
       <a class="button-link button-link--primary" href={`mailto:${site.contactEmail}?subject=${encodeURIComponent('Consulta sobre talleres')}`}>
         Escribir a Jorge
