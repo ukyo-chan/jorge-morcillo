@@ -43,6 +43,7 @@ La navegación visible es:
 Inicio        → /
 Libros        → /#libros
 Sobre Jorge   → /#autor
+Talleres      → /talleres/
 Prensa        → /prensa/
 Contacto      → /contacto/
 ```
@@ -52,11 +53,12 @@ La Home reúne:
 1. Hero editorial con retrato.
 2. Los dos libros publicados.
 3. Presentación biográfica breve.
-4. Prensa destacada.
-5. Agenda, únicamente cuando existan eventos publicables.
-6. Contacto profesional.
+4. Acceso a Talleres.
+5. Prensa destacada.
+6. Agenda, únicamente cuando existan eventos publicables.
+7. Contacto profesional.
 
-Se conservan las rutas `/libros/`, `/autor/`, `/prensa/` y `/contacto/` para ampliar información cuando aporta profundidad.
+Se conservan las rutas `/libros/`, `/autor/`, `/talleres/`, `/prensa/` y `/contacto/` para ampliar información cuando aporta profundidad.
 
 Las fichas individuales de libros regresan al bloque `/#libros` de la Home. El menú marca `Libros` como sección activa dentro de las rutas `/libros/...`, y mantiene activos `Prensa` y `Contacto` en sus páginas independientes.
 
@@ -88,9 +90,9 @@ S6 amplía la colección a 19 referencias estructuradas:
 
 La Home mantiene como destacados Agencia EFE, Levante-EMV y Europa Press. La página `/prensa/` separa la cobertura periodística de las referencias editoriales y de plataforma.
 
-### Retrato editorial
+### Retratos editoriales
 
-S4.3 añade un retrato local para la cabecera de la Home bajo `public/assets/img/autor/`.
+S4.3 añade un retrato local para la cabecera de la Home y la página de autor bajo `public/assets/img/autor/`. S9.2 incorpora además dos cabeceras fotográficas específicas: una librería para `/prensa/` y un aula luminosa para `/talleres/`, almacenadas en `public/assets/img/prensa/` y `public/assets/img/talleres/`.
 
 ## Dirección visual actual
 
@@ -115,6 +117,12 @@ S5 convierte `/autor/` en una biografía editorial completa. La página presenta
 ## Página de contacto
 
 S7.1 simplifica `/contacto/` a una página directa y publicable. El canal provisional de contacto profesional es `jorge.morcillo@tomasmorcillo.com`, centralizado en `src/lib/site.ts` para poder sustituirlo fácilmente más adelante. La Home enlaza directamente a ese correo y la página de Contacto conserva únicamente una presentación breve, el correo y accesos al resto del sitio.
+
+## Página de talleres
+
+S9.1 añade `/talleres/` como sección independiente orientada a contratación. Presenta cuatro propuestas: encuentro con el autor, taller de lectura y mural a partir de `Cuentos valencianos para compartir`, cultura millennial con tecnología vintage a partir de `Mi padre es un Millennial` y taller de periodismo para Secundaria. Cada propuesta abre un correo con asunto específico y la Home incorpora un acceso directo.
+
+Queda pendiente localizar de forma inequívoca la URL de la noticia de El Periodic recordada como «Periodistas junior» (o título similar) para enlazarla desde el taller de periodismo y añadirla a la colección `prensa`; no se publica una referencia sin URL verificada.
 
 ## Dominio y producción
 
@@ -151,6 +159,8 @@ Las referencias de prensa enlazan artículos externos, por lo que no se marcan c
 - S7.1 — Contacto simplificado con correo provisional: completado.
 - S8 — QA visual, responsive y accesibilidad global: completado.
 - S9 — SEO técnico, sitemap y datos estructurados: completado.
+- S9.1 — Talleres y contratación directa: completado.
+- S9.2 — Cabeceras fotográficas de Prensa y Talleres: completado.
 
 ## Estado S6
 

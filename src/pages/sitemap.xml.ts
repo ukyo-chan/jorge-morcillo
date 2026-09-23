@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import { getPublishedBooks } from '../lib/content';
 import { absoluteUrl } from '../lib/seo';
 
-const staticRoutes = ['/', '/libros/', '/autor/', '/prensa/', '/contacto/'];
+const staticRoutes = ['/', '/libros/', '/autor/', '/talleres/', '/prensa/', '/contacto/'];
 
 export const GET: APIRoute = async () => {
   const books = await getPublishedBooks();

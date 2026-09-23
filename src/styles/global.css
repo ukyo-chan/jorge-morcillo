@@ -2194,3 +2194,296 @@ body {
     transform: none !important;
   }
 }
+
+/* S9.1 · Talleres */
+
+.home-workshops {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.78fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: end;
+}
+
+.home-workshops h2 {
+  margin: 0.3rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.8rem);
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.home-workshops__copy {
+  display: grid;
+  gap: 1.2rem;
+  justify-items: start;
+}
+
+.home-workshops__copy p {
+  max-width: 48ch;
+  margin: 0;
+  color: var(--muted);
+}
+
+.workshops-page__intro-action {
+  display: flex;
+  margin-top: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.workshops-list {
+  display: grid;
+  margin-top: clamp(4rem, 8vw, 6.5rem);
+  border-top: 1px solid var(--line);
+}
+
+.workshop-card {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) auto;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+  padding-block: clamp(2rem, 5vw, 3.2rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.workshop-card__index {
+  color: color-mix(in srgb, var(--accent) 72%, var(--muted));
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+  line-height: 1;
+}
+
+.workshop-card__content {
+  display: grid;
+  gap: 0.85rem;
+  width: min(100%, 720px);
+}
+
+.workshop-card__meta {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.workshop-card h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.3vw, 3.45rem);
+  letter-spacing: -0.035em;
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.workshop-card__description {
+  max-width: 64ch;
+  margin: 0;
+  color: color-mix(in srgb, var(--ink) 88%, var(--muted));
+  font-size: clamp(1rem, 1.6vw, 1.1rem);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+.workshop-card__book {
+  width: fit-content;
+  margin-top: 0.2rem;
+}
+
+.workshop-card__action {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.workshop-card__action .button-link {
+  white-space: nowrap;
+}
+
+.workshops-contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.75fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: end;
+  margin-top: clamp(5rem, 10vw, 8rem);
+  padding-top: clamp(2.5rem, 6vw, 4rem);
+  border-top: 2px solid var(--ink);
+}
+
+.workshops-contact h2 {
+  margin: 0.3rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.workshops-contact__copy {
+  display: grid;
+  gap: 1.1rem;
+  justify-items: start;
+}
+
+.workshops-contact__copy p {
+  max-width: 46ch;
+  margin: 0;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .home-workshops,
+  .workshops-contact {
+    grid-template-columns: 1fr;
+  }
+
+  .workshop-card {
+    grid-template-columns: 52px minmax(0, 1fr);
+  }
+
+  .workshop-card__action {
+    grid-column: 2;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 620px) {
+  .home-workshops h2,
+  .workshops-contact h2 {
+    font-size: clamp(2.25rem, 11vw, 3.5rem);
+  }
+
+  .workshop-card {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+    padding-block: 2.2rem;
+  }
+
+  .workshop-card__index {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .workshop-card__action {
+    grid-column: 1;
+    margin-top: 0.35rem;
+  }
+
+  .workshop-card__action .button-link,
+  .workshops-page__intro-action .button-link {
+    width: 100%;
+  }
+}
+
+/* S9.2 · Cabeceras fotográficas de Prensa y Talleres */
+
+.section-hero--media {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(360px, 1.22fr);
+  gap: clamp(2.5rem, 7vw, 6rem);
+  align-items: center;
+  padding-bottom: clamp(3.5rem, 8vw, 6rem);
+}
+
+.section-hero__copy {
+  display: grid;
+  gap: 1.15rem;
+}
+
+.section-hero h1 {
+  max-width: 8ch;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.94;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.section-hero__lead {
+  max-width: 58ch;
+  margin: 0.35rem 0 0;
+  color: color-mix(in srgb, var(--ink) 88%, var(--muted));
+  font-size: clamp(1.06rem, 1.8vw, 1.24rem);
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.section-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 0.65rem;
+}
+
+.section-hero__image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 0;
+  isolation: isolate;
+}
+
+.section-hero__image::before {
+  content: '';
+  position: absolute;
+  inset: 7% -3% -6% 7%;
+  z-index: 0;
+  border-radius: 22px;
+  background: color-mix(in srgb, var(--accent-soft) 70%, var(--page));
+}
+
+.section-hero__image img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border: 1px solid color-mix(in srgb, var(--line) 80%, var(--ink));
+  border-radius: 20px;
+  box-shadow:
+    0 28px 60px rgba(31, 36, 33, 0.14),
+    0 7px 16px rgba(31, 36, 33, 0.07);
+  object-fit: cover;
+  object-position: center;
+}
+
+.section-hero--media + .workshops-list {
+  margin-top: 0;
+}
+
+@media (max-width: 920px) {
+  .section-hero--media {
+    grid-template-columns: 1fr;
+    gap: 2.1rem;
+  }
+
+  .section-hero__image {
+    width: min(100%, 820px);
+  }
+}
+
+@media (max-width: 680px) {
+  .section-hero--media {
+    padding-bottom: 3.7rem;
+  }
+
+  .section-hero h1 {
+    max-width: 100%;
+    font-size: clamp(3rem, 15vw, 5rem);
+  }
+
+  .section-hero__image::before {
+    inset: 6% -2% -4% 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-hero h1 {
+    font-size: clamp(2.9rem, 15vw, 4.45rem);
+  }
+
+  .section-hero__actions,
+  .section-hero__actions .button-link {
+    width: 100%;
+  }
+}

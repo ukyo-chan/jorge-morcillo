@@ -14,6 +14,7 @@ export const navigation = [
   { label: 'Inicio', href: '/' },
   { label: 'Libros', href: '/#libros' },
   { label: 'Sobre Jorge', href: '/#autor' },
+  { label: 'Talleres', href: '/talleres/' },
   { label: 'Prensa', href: '/prensa/' },
   { label: 'Contacto', href: '/contacto/' }
 ] as const;

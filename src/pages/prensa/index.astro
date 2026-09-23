@@ -1,5 +1,4 @@
 ---
-import PageIntro from '../../components/PageIntro.astro';
 import PressCard from '../../components/PressCard.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { getEditorialPlatforms, getPressCoverage } from '../../lib/content';
@@ -12,16 +11,35 @@ const platforms = await getEditorialPlatforms();
 <SiteLayout
   title="Prensa"
   description="Apariciones en prensa, entrevistas, cobertura cultural y referencias editoriales sobre la obra de Jorge Morcillo Jareño."
+  image="/assets/img/prensa/jorge-morcillo-prensa.webp"
+  imageAlt="Retrato editorial de Jorge Morcillo Jareño en una librería"
+  imageWidth={1672}
+  imageHeight={941}
   structuredData={breadcrumbStructuredData([
     { name: 'Inicio', path: '/' },
     { name: 'Prensa', path: '/prensa/' }
   ])}
 >
-  <PageIntro
-    eyebrow="Archivo"
-    title="Prensa"
-    lead="Apariciones en medios, entrevistas y cobertura periodística sobre Jorge Morcillo Jareño y su obra. Las fichas editoriales, plataformas y recepción de lectores se recogen aparte para no mezclarlas con la cobertura periodística."
-  />
+  <header class="section-hero section-hero--media">
+    <div class="section-hero__copy">
+      <p class="section-kicker">Archivo</p>
+      <h1>Prensa</h1>
+      <p class="section-hero__lead">
+        Apariciones en medios, entrevistas y cobertura periodística sobre Jorge Morcillo Jareño y su obra. Las fichas editoriales, plataformas y recepción de lectores se recogen aparte para no mezclarlas con la cobertura periodística.
+      </p>
+    </div>
+
+    <figure class="section-hero__image">
+      <img
+        src="/assets/img/prensa/jorge-morcillo-prensa.webp"
+        width="1672"
+        height="941"
+        alt="Retrato editorial de Jorge Morcillo Jareño en una librería, con estanterías desenfocadas al fondo."
+        loading="eager"
+        decoding="async"
+      />
+    </figure>
+  </header>
 
   {press.length > 0 && (
     <section class="press-archive-section" aria-labelledby="press-coverage-title">
