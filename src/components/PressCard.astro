@@ -1,0 +1,32 @@
+---
+import type { PrensaEntry } from '../lib/content';
+
+interface Props {
+  item: PrensaEntry;
+  compact?: boolean;
+}
+
+const { item, compact = false } = Astro.props;
+---
+
+<article class:list={['press-card', { 'press-card--compact': compact }]}>
+  <div class="press-card__meta">
+    <span>{item.data.medio}</span>
+    {item.data.fechaTexto && (
+      <>
+        <span aria-hidden="true">·</span>
+        <span>{item.data.fechaTexto}</span>
+      </>
+    )}
+  </div>
+
+  <h3>
+    <a href={item.data.url} target="_blank" rel="noreferrer">{item.data.titulo}</a>
+  </h3>
+
+  <p>{item.data.descripcion}</p>
+
+  <a class="text-link" href={item.data.url} target="_blank" rel="noreferrer">
+    Leer en {item.data.medio} <span aria-hidden="true">↗</span>
+  </a>
+</article>

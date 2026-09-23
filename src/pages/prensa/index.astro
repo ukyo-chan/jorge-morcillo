@@ -1,0 +1,52 @@
+---
+import PageIntro from '../../components/PageIntro.astro';
+import PressCard from '../../components/PressCard.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { getEditorialPlatforms, getPressCoverage } from '../../lib/content';
+
+const press = await getPressCoverage();
+const platforms = await getEditorialPlatforms();
+---
+
+<SiteLayout
+  title="Prensa"
+  description="Apariciones en prensa, entrevistas, cobertura cultural y referencias editoriales sobre la obra de Jorge Morcillo Jareño."
+>
+  <PageIntro
+    eyebrow="Archivo"
+    title="Prensa"
+    lead="Apariciones en medios, entrevistas y cobertura periodística sobre Jorge Morcillo Jareño y su obra. Las fichas editoriales, plataformas y recepción de lectores se recogen aparte para no mezclarlas con la cobertura periodística."
+  />
+
+  {press.length > 0 && (
+    <section class="press-archive-section" aria-labelledby="press-coverage-title">
+      <div class="press-archive-section__heading">
+        <div>
+          <p class="section-kicker">Cobertura</p>
+          <h2 id="press-coverage-title">Prensa y entrevistas</h2>
+        </div>
+        <p>Noticias, perfiles, entrevistas y artículos sobre los libros y la trayectoria pública del autor.</p>
+      </div>
+
+      <div class="press-grid press-grid--archive">
+        {press.map((item) => <PressCard item={item} />)}
+      </div>
+    </section>
+  )}
+
+  {platforms.length > 0 && (
+    <section class="press-archive-section press-archive-section--secondary" aria-labelledby="press-platforms-title">
+      <div class="press-archive-section__heading">
+        <div>
+          <p class="section-kicker">Referencias</p>
+          <h2 id="press-platforms-title">Editoriales, librerías y recepción</h2>
+        </div>
+        <p>Fichas oficiales de los libros, presencia en plataformas y reseñas o valoraciones de lectores.</p>
+      </div>
+
+      <div class="press-grid press-grid--resources">
+        {platforms.map((item) => <PressCard item={item} compact />)}
+      </div>
+    </section>
+  )}
+</SiteLayout>

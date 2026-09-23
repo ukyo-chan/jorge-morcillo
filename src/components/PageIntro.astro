@@ -1,0 +1,16 @@
+---
+interface Props {
+  title: string;
+  lead: string;
+  eyebrow?: string;
+  home?: boolean;
+}
+
+const { title, lead, eyebrow, home = false } = Astro.props;
+---
+
+<header class:list={['page-intro', { 'page-intro--home': home }]}>
+  {eyebrow && <p class="page-intro__eyebrow">{eyebrow}</p>}
+  <h1>{title}</h1>
+  <p class="page-intro__lead">{lead}</p>
+</header>

@@ -1,0 +1,39 @@
+---
+import { navigation } from '../lib/site';
+
+const currentPath = Astro.url.pathname;
+
+const isActive = (label: string, href: string) => {
+  if (label === 'Libros') {
+    return currentPath.startsWith('/libros/');
+  }
+
+  if (label === 'Sobre Jorge') {
+    return currentPath.startsWith('/autor/');
+  }
+
+  if (href === '/') {
+    return currentPath === '/';
+  }
+
+  if (href.includes('#')) {
+    return false;
+  }
+
+  return currentPath.startsWith(href);
+};
+---
+
+<nav class="site-nav" aria-label="Navegación principal">
+  <ul>
+    {
+      navigation.map((item) => (
+        <li>
+          <a href={item.href} aria-current={isActive(item.label, item.href) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

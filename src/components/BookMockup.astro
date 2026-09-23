@@ -1,0 +1,37 @@
+---
+interface CoverImage {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+}
+
+interface Props {
+  title: string;
+  href: string;
+  image: CoverImage;
+  pages?: number;
+}
+
+const { title, href, image, pages = 140 } = Astro.props;
+const depth = Math.round(Math.max(16, Math.min(34, 9 + pages * 0.09)));
+const offset = Math.max(6, Math.round(depth * 0.34));
+const bottomOverhang = Math.max(5, Math.round(offset * 0.82));
+const style = `--book-depth: ${depth}px; --book-depth-negative: -${depth}px; --book-offset: ${offset}px; --book-bottom-overhang: -${bottomOverhang}px;`;
+---
+
+<a class="book-mockup" href={href} aria-label={`Ver ${title}`} style={style}>
+  <span class="book-mockup__object" aria-hidden="true">
+    <span class="book-mockup__page-block"></span>
+    <span class="book-mockup__cover">
+      <img
+        src={image.src}
+        alt=""
+        width={image.width}
+        height={image.height}
+        loading="lazy"
+        decoding="async"
+      />
+    </span>
+  </span>
+</a>

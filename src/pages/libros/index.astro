@@ -1,0 +1,23 @@
+---
+import BookCard from '../../components/BookCard.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { getPublishedBooks } from '../../lib/content';
+
+const books = await getPublishedBooks();
+---
+
+<SiteLayout
+  title="Libros"
+  description="Libros publicados por Jorge Morcillo Jareño. Literatura infantil y juvenil sobre memoria, familia, territorio, educación y nuevas generaciones."
+>
+  <PageIntro
+    eyebrow="Obra publicada"
+    title="Libros"
+    lead="Historias que conectan memoria y presente, territorio y nuevas generaciones."
+  />
+
+  <section class="book-list" aria-label="Libros publicados">
+    {books.map((book) => <BookCard book={book} />)}
+  </section>
+</SiteLayout>

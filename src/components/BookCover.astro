@@ -1,0 +1,38 @@
+---
+interface CoverImage {
+  src: string;
+  alt: string;
+  pie?: string;
+  credito?: string;
+  width?: number;
+  height?: number;
+}
+
+interface Props {
+  image: CoverImage;
+  loading?: 'eager' | 'lazy';
+  priority?: boolean;
+}
+
+const { image, loading = 'lazy', priority = false } = Astro.props;
+---
+
+<figure class="book-cover">
+  <div class="book-cover__frame">
+    <img
+      src={image.src}
+      alt={image.alt}
+      width={image.width}
+      height={image.height}
+      loading={loading}
+      fetchpriority={priority ? 'high' : 'auto'}
+      decoding="async"
+    />
+  </div>
+  {(image.pie || image.credito) && (
+    <figcaption>
+      {image.pie && <span>{image.pie}</span>}
+      {image.credito && <span>{image.credito}</span>}
+    </figcaption>
+  )}
+</figure>

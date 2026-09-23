@@ -1,0 +1,33 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { site } from '../../lib/site';
+
+const mailto = `mailto:${site.contactEmail}`;
+---
+
+<SiteLayout
+  title="Contacto"
+  description="Contacto profesional con Jorge Morcillo Jareño para prensa, presentaciones, encuentros con lectores, centros educativos y propuestas relacionadas con su obra."
+>
+  <section class="contact-simple" aria-labelledby="contact-title">
+    <div class="contact-simple__intro">
+      <p class="section-kicker">Contacto profesional</p>
+      <h1 id="contact-title">Hablemos</h1>
+      <p class="contact-simple__lead">
+        Para prensa, presentaciones, encuentros con lectores, centros educativos, librerías y propuestas profesionales relacionadas con su obra.
+      </p>
+    </div>
+
+    <div class="contact-simple__channel">
+      <p class="contact-simple__label">Correo</p>
+      <a class="contact-simple__email" href={mailto}>{site.contactEmail}</a>
+      <a class="button-link button-link--primary" href={mailto}>Escribir a Jorge</a>
+    </div>
+  </section>
+
+  <nav class="contact-simple__links" aria-label="Seguir explorando">
+    <a href="/#libros">Libros <span aria-hidden="true">→</span></a>
+    <a href="/autor/">Sobre Jorge <span aria-hidden="true">→</span></a>
+    <a href="/prensa/">Prensa <span aria-hidden="true">→</span></a>
+  </nav>
+</SiteLayout>

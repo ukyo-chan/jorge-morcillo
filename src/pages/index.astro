@@ -1,0 +1,133 @@
+---
+import BookCard from '../components/BookCard.astro';
+import PressCard from '../components/PressCard.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { getAgendaEvents, getFeaturedBooks, getFeaturedPress } from '../lib/content';
+import { site } from '../lib/site';
+
+const books = await getFeaturedBooks();
+const press = await getFeaturedPress();
+const agenda = (await getAgendaEvents()).slice(0, 3);
+---
+
+<SiteLayout
+  title={site.name}
+  description="Web profesional de Jorge Morcillo Jareño, escritor valenciano, profesor de Lengua Castellana y Literatura y periodista. Libros, biografía, prensa y actividad pública."
+  image="/assets/img/autor/jorge-morcillo-retrato-home.png"
+>
+  <section class="home-hero" aria-labelledby="home-hero-title">
+    <div class="home-hero__copy">
+      <p class="home-hero__eyebrow">Literatura · aula · periodismo</p>
+      <h1 id="home-hero-title">{site.name}</h1>
+      <p class="home-hero__lead">{site.descriptor}</p>
+      <p class="home-hero__statement">
+        Una trayectoria construida alrededor de la palabra: escribir, comunicar, enseñar y crear cultura.
+      </p>
+      <div class="home-hero__actions">
+        <a class="button-link button-link--primary" href="#libros">Ver libros</a>
+        <a class="button-link" href="#medios">Ver prensa destacada</a>
+      </div>
+    </div>
+
+    <figure class="home-hero__portrait">
+      <img
+        src="/assets/img/autor/jorge-morcillo-retrato-home.png"
+        width="1122"
+        height="1402"
+        alt="Retrato editorial de Jorge Morcillo Jareño al aire libre, con paisaje desenfocado al fondo."
+        loading="eager"
+        decoding="async"
+      />
+    </figure>
+  </section>
+
+  <section class="home-section home-section--books" id="libros" aria-labelledby="home-books-title">
+    <div class="home-section__heading">
+      <div>
+        <p class="section-kicker">Obra publicada</p>
+        <h2 id="home-books-title">Libros</h2>
+      </div>
+      <p>Historias sobre memoria, territorio, familia y nuevas generaciones.</p>
+    </div>
+
+    <div class="book-list book-list--home">
+      {books.map((book) => <BookCard book={book} />)}
+    </div>
+  </section>
+
+  <section class="home-section home-author" id="autor" aria-labelledby="home-author-title">
+    <div class="home-author__label">
+      <p class="section-kicker">Sobre Jorge</p>
+      <p class="home-author__motto">Del periodismo al aula y del aula a los libros.</p>
+    </div>
+
+    <div class="home-author__copy">
+      <h2 id="home-author-title">Escribir, comunicar y enseñar</h2>
+      <p>
+        Jorge Morcillo Jareño (València, 1986), criado en Alboraya, es escritor, periodista y profesor de Lengua Castellana y Literatura. Su trayectoria profesional ha estado vinculada a la palabra desde distintas perspectivas: medios y comunicación, enseñanza y creación literaria.
+      </p>
+      <p>
+        Tras desarrollar experiencias profesionales en España, Reino Unido y México, regresó a València y orientó su carrera hacia la enseñanza pública. El contacto cotidiano con adolescentes, sus lenguajes y sus referentes culturales forma hoy parte del contexto desde el que escribe.
+      </p>
+      <a class="text-link" href="/autor/">Leer biografía ampliada <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  {press.length > 0 && (
+    <section class="home-section" id="medios" aria-labelledby="home-press-title">
+      <div class="home-section__heading">
+        <div>
+          <p class="section-kicker">Archivo público</p>
+          <h2 id="home-press-title">En los medios</h2>
+        </div>
+        <a class="section-link" href="/prensa/">Ver todas las apariciones <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="press-grid press-grid--home">
+        {press.map((item) => <PressCard item={item} compact />)}
+      </div>
+    </section>
+  )}
+
+  {agenda.length > 0 && (
+    <section class="home-section" id="agenda" aria-labelledby="home-agenda-title">
+      <div class="home-section__heading">
+        <div>
+          <p class="section-kicker">Próximamente</p>
+          <h2 id="home-agenda-title">Agenda</h2>
+        </div>
+      </div>
+
+      <div class="agenda-list">
+        {agenda.map((event) => (
+          <article class="agenda-item">
+            <p class="agenda-item__date">{event.data.fechaTexto ?? event.data.fechaInicio}</p>
+            <h3>{event.data.titulo}</h3>
+            <p>{event.data.descripcion}</p>
+            {event.data.lugar && <p class="agenda-item__place">{event.data.lugar}</p>}
+            {event.data.url && (
+              <a class="text-link" href={event.data.url} target="_blank" rel="noreferrer">
+                Más información <span aria-hidden="true">↗</span>
+              </a>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="home-section home-contact" id="contacto" aria-labelledby="home-contact-title">
+    <div>
+      <p class="section-kicker">Contacto profesional</p>
+      <h2 id="home-contact-title">Hablemos</h2>
+    </div>
+    <div class="home-contact__copy">
+      <p>
+        Para prensa, presentaciones, encuentros con lectores, centros educativos y propuestas relacionadas con su obra.
+      </p>
+      <a class="text-link" href={`mailto:${site.contactEmail}`}>
+        {site.contactEmail} <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
+</SiteLayout>

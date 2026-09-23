@@ -1,0 +1,52 @@
+---
+import type { LibroEntry } from '../lib/content';
+import BookMockup from './BookMockup.astro';
+
+interface Props {
+  book: LibroEntry;
+}
+
+const { book } = Astro.props;
+const href = `/libros/${book.id}/`;
+---
+
+<article class="book-card">
+  {book.data.imagenPrincipal && (
+    <div class="book-card__visual">
+      <BookMockup
+        title={book.data.titulo}
+        href={href}
+        image={book.data.imagenPrincipal}
+        pages={book.data.paginas}
+      />
+    </div>
+  )}
+
+  <div class="book-card__meta" aria-label="Datos básicos del libro">
+    <span>{book.data.anio}</span>
+    <span aria-hidden="true">·</span>
+    <span>{book.data.editorial}</span>
+    {book.data.paginas && (
+      <>
+        <span aria-hidden="true">·</span>
+        <span>{book.data.paginas} páginas</span>
+      </>
+    )}
+  </div>
+
+  <div class="book-card__body">
+    <h2><a href={href}>{book.data.titulo}</a></h2>
+    {book.data.subtitulo && <p class="book-card__subtitle">{book.data.subtitulo}</p>}
+    <p class="book-card__summary">{book.data.resumen}</p>
+  </div>
+
+  {book.data.claves.length > 0 && (
+    <ul class="tag-list" aria-label="Temas del libro">
+      {book.data.claves.slice(0, 5).map((key) => <li>{key}</li>)}
+    </ul>
+  )}
+
+  <a class="text-link" href={href} aria-label={`Ver ${book.data.titulo}`}>
+    Ver libro <span aria-hidden="true">→</span>
+  </a>
+</article>

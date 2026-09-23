@@ -1,0 +1,125 @@
+---
+import { render } from 'astro:content';
+import BookCover from '../../components/BookCover.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { getPublishedBooks, type LibroEntry } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const books = await getPublishedBooks();
+
+  return books.map((book) => ({
+    params: { id: book.id },
+    props: { book }
+  }));
+}
+
+interface Props {
+  book: LibroEntry;
+}
+
+const { book } = Astro.props;
+const { Content } = await render(book);
+const description = book.data.seo?.description ?? book.data.resumen;
+const title = book.data.seo?.title ?? book.data.titulo;
+---
+
+<SiteLayout
+  title={title}
+  description={description}
+  ogType="book"
+  image={book.data.imagenPrincipal?.src}
+>
+  <nav class="breadcrumbs" aria-label="Migas de pan">
+    <a href="/#libros">Libros</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">{book.data.titulo}</span>
+  </nav>
+
+  <article class="book-detail">
+    <div class="book-detail__hero">
+      {book.data.imagenPrincipal && (
+        <div class="book-detail__cover">
+          <BookCover image={book.data.imagenPrincipal} loading="eager" priority />
+        </div>
+      )}
+
+      <header class="book-detail__header">
+        <p class="book-detail__eyebrow">Libro · {book.data.anio}</p>
+        <h1>{book.data.titulo}</h1>
+        {book.data.subtitulo && <p class="book-detail__subtitle">{book.data.subtitulo}</p>}
+        <p class="book-detail__summary">{book.data.resumen}</p>
+      </header>
+    </div>
+
+    <div class="book-detail__grid">
+      <aside class="book-facts" aria-label="Ficha del libro">
+        <dl>
+          <div>
+            <dt>Editorial</dt>
+            <dd>{book.data.editorial}</dd>
+          </div>
+          <div>
+            <dt>Año</dt>
+            <dd>{book.data.anio}</dd>
+          </div>
+          {book.data.isbn && (
+            <div>
+              <dt>ISBN</dt>
+              <dd>{book.data.isbn}</dd>
+            </div>
+          )}
+          {book.data.paginas && (
+            <div>
+              <dt>Páginas</dt>
+              <dd>{book.data.paginas}</dd>
+            </div>
+          )}
+          {book.data.estructura && (
+            <div>
+              <dt>Estructura</dt>
+              <dd>{book.data.estructura}</dd>
+            </div>
+          )}
+          {book.data.ilustradores.length > 0 && (
+            <div>
+              <dt>Ilustración</dt>
+              <dd>{book.data.ilustradores.join(', ')}</dd>
+            </div>
+          )}
+        </dl>
+      </aside>
+
+      <div class="book-detail__content">
+        <div class="prose book-prose">
+          <Content />
+        </div>
+
+        {book.data.claves.length > 0 && (
+          <section class="book-topics" aria-labelledby="book-topics-title">
+            <h2 id="book-topics-title">Temas</h2>
+            <ul class="tag-list">
+              {book.data.claves.map((key) => <li>{key}</li>)}
+            </ul>
+          </section>
+        )}
+
+        {book.data.enlaces.length > 0 && (
+          <section class="book-links" aria-labelledby="book-links-title">
+            <h2 id="book-links-title">Enlaces</h2>
+            <ul>
+              {book.data.enlaces.map((link) => (
+                <li>
+                  <a href={link.url} rel="noreferrer" target="_blank">
+                    {link.texto} <span aria-hidden="true">↗</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </div>
+    </div>
+  </article>
+
+  <p class="section-backlink"><a href="/#libros">← Volver a libros</a></p>
+</SiteLayout>

@@ -1,0 +1,172 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { site } from '../../lib/site';
+---
+
+<SiteLayout
+  title="Sobre Jorge"
+  description="Biografía y trayectoria de Jorge Morcillo Jareño, escritor valenciano, profesor de Lengua Castellana y Literatura y periodista."
+  image="/assets/img/autor/jorge-morcillo-retrato-home.png"
+>
+  <article class="author-page">
+    <nav class="breadcrumbs" aria-label="Migas de pan">
+      <a href="/">Inicio</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Sobre Jorge</span>
+    </nav>
+
+    <header class="author-hero">
+      <div class="author-hero__copy">
+        <p class="section-kicker">Sobre Jorge</p>
+        <h1>{site.name}</h1>
+        <p class="author-hero__descriptor">{site.descriptor}</p>
+        <p class="author-hero__lead">
+          Nacido en València en 1986 y criado en Alboraya, su trayectoria profesional se ha construido alrededor de la palabra: primero desde el periodismo y la comunicación, después desde la enseñanza y, de forma cada vez más central, desde la literatura.
+        </p>
+        <div class="author-hero__actions">
+          <a class="button-link button-link--primary" href="/#libros">Ver libros</a>
+          <a class="button-link" href="/prensa/">Prensa y entrevistas</a>
+        </div>
+      </div>
+
+      <figure class="author-hero__portrait">
+        <img
+          src="/assets/img/autor/jorge-morcillo-retrato-home.png"
+          width="1122"
+          height="1402"
+          alt="Retrato editorial de Jorge Morcillo Jareño al aire libre, con paisaje desenfocado al fondo."
+          loading="eager"
+          decoding="async"
+        />
+      </figure>
+    </header>
+
+    <section class="author-section author-section--story" aria-labelledby="author-story-title">
+      <div class="author-section__label">
+        <p class="section-kicker">Una trayectoria alrededor de la palabra</p>
+      </div>
+
+      <div class="author-story">
+        <h2 id="author-story-title">Observar, contar, enseñar y escribir</h2>
+        <p>
+          Formado en Periodismo y con estudios de posgrado, Jorge inició su carrera en medios y comunicación. Su recorrido profesional pasó por España, Reino Unido y México, con experiencias en redacciones, gabinetes, proyectos culturales y comunicación corporativa.
+        </p>
+        <p>
+          Trabajó en la redacción de Agencia FM, en Madrid; publicó en el Diario de Toluca, en México; y formó parte de TV América, vinculada a la comunidad hispanohablante en Londres. A ello se sumaron experiencias en gabinetes de comunicación de instituciones y organizaciones no gubernamentales.
+        </p>
+        <p>
+          De regreso a València orientó progresivamente su carrera hacia la enseñanza. Actualmente ejerce como profesor de Lengua Castellana y Literatura en centros públicos de educación secundaria de la Comunitat Valenciana, un trabajo que mantiene su escritura en contacto directo con el lenguaje, los intereses y los referentes culturales de las nuevas generaciones.
+        </p>
+        <blockquote>
+          <p>Del periodismo al aula y del aula a los libros.</p>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="author-section" aria-labelledby="author-facets-title">
+      <div class="author-section__heading">
+        <p class="section-kicker">Trayectoria</p>
+        <h2 id="author-facets-title">Cuatro formas de trabajar con la palabra</h2>
+      </div>
+
+      <div class="author-facets">
+        <article class="author-facet author-facet--primary">
+          <p class="author-facet__number" aria-hidden="true">01</p>
+          <h3>Escritor</h3>
+          <p>
+            La literatura constituye hoy el centro de su identidad pública. Es autor de <em>Cuentos valencianos para compartir</em> (Erizo Blanco, 2024) y <em>Mi padre es un Millennial</em> (Erizo Blanco, 2026), ambos ilustrados por Carlos Mercé.
+          </p>
+          <a class="text-link" href="/#libros">Ver obra publicada <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="author-facet">
+          <p class="author-facet__number" aria-hidden="true">02</p>
+          <h3>Profesor</h3>
+          <p>
+            Ejerce como profesor de Lengua Castellana y Literatura en la enseñanza pública. El aula le permite conocer de primera mano las inquietudes, el lenguaje y los referentes de adolescentes y nuevos lectores.
+          </p>
+        </article>
+
+        <article class="author-facet">
+          <p class="author-facet__number" aria-hidden="true">03</p>
+          <h3>Periodista</h3>
+          <p>
+            Su primera trayectoria profesional se desarrolló en medios y comunicación, con experiencias en Madrid, México y Londres. De esa etapa conserva herramientas que siguen presentes en su escritura: observar, documentarse, escuchar y contrastar.
+          </p>
+        </article>
+
+        <article class="author-facet">
+          <p class="author-facet__number" aria-hidden="true">04</p>
+          <h3>Comunicación y cultura</h3>
+          <p>
+            Participó en proyectos culturales, formativos y artísticos en Emece3 y posteriormente dirigió el departamento de Comunicación de Industrias Tomás Morcillo, incorporando también la comunicación corporativa a su recorrido profesional.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="author-section author-section--path" aria-labelledby="author-path-title">
+      <div class="author-section__heading">
+        <p class="section-kicker">Recorrido</p>
+        <h2 id="author-path-title">De los medios a la literatura</h2>
+      </div>
+
+      <ol class="author-path">
+        <li>
+          <div class="author-path__marker" aria-hidden="true"></div>
+          <div>
+            <p class="author-path__eyebrow">Periodismo y comunicación</p>
+            <h3>España, México y Reino Unido</h3>
+            <p>
+              Redacciones, comunicación institucional, proyectos profesionales y experiencias internacionales amplían una mirada basada en la observación y el interés por las historias humanas.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="author-path__marker" aria-hidden="true"></div>
+          <div>
+            <p class="author-path__eyebrow">Enseñanza</p>
+            <h3>Regreso a València y entrada en el aula</h3>
+            <p>
+              La docencia de Lengua Castellana y Literatura se convierte en una nueva forma de trabajar con las palabras y en un contacto cotidiano con los lectores a los que se dirige buena parte de su obra.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div class="author-path__marker" aria-hidden="true"></div>
+          <div>
+            <p class="author-path__eyebrow">Literatura</p>
+            <h3>2024 · 2026</h3>
+            <p>
+              <em>Cuentos valencianos para compartir</em> abre su trayectoria editorial en 2024. En 2026 llega <em>Mi padre es un Millennial</em>, una novela juvenil nacida también del diálogo cotidiano con adolescentes y familias.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="author-section author-section--territory" aria-labelledby="author-territory-title">
+      <div>
+        <p class="section-kicker">Territorio y mirada</p>
+        <h2 id="author-territory-title">València, Alboraya y nuevas generaciones</h2>
+      </div>
+      <div class="author-territory__copy">
+        <p>
+          Desde València y con un vínculo especialmente estrecho con Alboraya, l'Horta y la cultura valenciana, Jorge desarrolla una obra en la que memoria y presente dialogan constantemente. Familia, comunidad, tecnología, territorio y relaciones entre generaciones aparecen como temas recurrentes.
+        </p>
+        <p>
+          Periodismo, comunicación, docencia y literatura no funcionan así como compartimentos aislados, sino como etapas de una misma trayectoria: observar y contar, conectar historias con públicos, escuchar y transmitir y, finalmente, reunir esas experiencias en los libros.
+        </p>
+      </div>
+    </section>
+
+    <footer class="author-next">
+      <p class="section-kicker">Seguir explorando</p>
+      <div class="author-next__links">
+        <a href="/#libros">Libros <span aria-hidden="true">→</span></a>
+        <a href="/prensa/">Prensa <span aria-hidden="true">→</span></a>
+        <a href="/contacto/">Contacto <span aria-hidden="true">→</span></a>
+      </div>
+    </footer>
+  </article>
+</SiteLayout>
