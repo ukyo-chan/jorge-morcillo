@@ -8,6 +8,9 @@ interface Workshop {
   title: string;
   meta: string;
   description: string;
+  duration: string;
+  development: string;
+  objective: string;
   bookHref?: string;
   bookLabel?: string;
   referenceHref?: string;
@@ -20,7 +23,12 @@ const workshops: Workshop[] = [
     title: 'Encuentro con el autor',
     meta: 'Animación lectora · tertulia literaria',
     description:
-      'Un encuentro literario en torno a cualquiera de los libros publicados por Jorge Morcillo. La sesión se plantea como una tertulia abierta para conversar sobre la historia elegida, sus personajes y temas, el proceso de escritura y las preguntas de los lectores. Una propuesta de animación a la lectura para centros educativos, bibliotecas, clubes de lectura y espacios culturales.',
+      'Una tertulia literaria en torno a cualquiera de los libros publicados por Jorge Morcillo, pensada para acercar al lector al autor y a la historia desde una conversación directa y participativa.',
+    duration: '50 minutos',
+    development:
+      'La sesión parte del libro elegido y combina una breve presentación, conversación guiada sobre la historia, sus personajes y temas, comentarios sobre el proceso de escritura y un espacio amplio para las preguntas de los lectores.',
+    objective:
+      'Fomentar el gusto por la lectura y la participación oral, despertar la curiosidad por el proceso creativo y convertir el encuentro con un autor en una experiencia cercana que prolongue la lectura más allá del libro.',
     bookHref: '/#libros',
     bookLabel: 'Ver libros publicados'
   },
@@ -29,7 +37,12 @@ const workshops: Workshop[] = [
     title: 'Cuentos valencianos: lectura y mural',
     meta: 'Literatura · cultura valenciana · creación plástica',
     description:
-      'Taller literario y creativo a partir de Cuentos valencianos para compartir. Comienza con una breve lectura de uno de los relatos y continúa con una actividad plástica colectiva: crear y pintar murales inspirados en el cuento trabajado. Literatura, imaginación, folclore y cultura valenciana se convierten así en una experiencia participativa.',
+      'Taller literario y creativo a partir de Cuentos valencianos para compartir, en el que lectura, cultura valenciana e imaginación se unen a una actividad plástica colectiva.',
+    duration: '50 minutos',
+    development:
+      'Jorge introduce brevemente el relato escogido y realiza una lectura de un fragmento. A partir de sus personajes, lugares e ideas, el grupo desarrolla una propuesta visual y participa en la creación y pintura de un mural inspirado en el cuento.',
+    objective:
+      'Acercar la literatura y la cultura valenciana a través de una experiencia creativa, favorecer la comprensión y reinterpretación del texto mediante imágenes y promover la expresión plástica y el trabajo compartido.',
     bookHref: '/libros/cuentos-valencianos-para-compartir/',
     bookLabel: 'Ver Cuentos valencianos para compartir'
   },
@@ -38,7 +51,12 @@ const workshops: Workshop[] = [
     title: 'Cultura millennial y tecnología vintage',
     meta: 'Literatura juvenil · cultura millennial · tecnología',
     description:
-      'Un recorrido por la cultura millennial a través de fragmentos de Mi padre es un Millennial y del contacto directo con tecnología de otra época. Un Discman, una consola de 16 bits y otros objetos sirven para hablar de ocio, comunicación y vida cotidiana antes del smartphone, y para comparar cómo han cambiado los hábitos entre generaciones.',
+      'Un recorrido participativo por la cultura millennial a partir de Mi padre es un Millennial y del contacto directo con objetos tecnológicos anteriores al smartphone.',
+    duration: '50 minutos',
+    development:
+      'La actividad alterna la lectura de fragmentos de la novela con la observación y manipulación de tecnología vintage, como un Discman o una consola de 16 bits. A partir de estos objetos se conversa sobre videojuegos, música, comunicación, ocio y vida cotidiana, comparando la experiencia millennial con la de los jóvenes actuales.',
+    objective:
+      'Comprender cómo han cambiado la tecnología y los hábitos cotidianos en pocas décadas, favorecer el diálogo entre generaciones y utilizar la literatura como punto de partida para reflexionar sobre nuestra relación con la tecnología.',
     bookHref: '/libros/mi-padre-es-un-millennial/',
     bookLabel: 'Ver Mi padre es un Millennial'
   },
@@ -47,7 +65,12 @@ const workshops: Workshop[] = [
     title: 'Taller de periodismo para Secundaria',
     meta: 'Secundaria · 1 mes · 2 h semanales',
     description:
-      'Programa práctico dirigido a los dos primeros ciclos de Secundaria. Durante un mes, con dos horas semanales, el alumnado conoce las principales tipologías textuales periodísticas y aprende especialmente a redactar una noticia: seleccionar la información relevante, ordenar los datos, construir un titular y escribir con claridad. El taller conecta con la experiencia de Periodistas Junior, proyecto diseñado por Jorge Morcillo en el que estudiantes trabajaron como una pequeña redacción periodística.',
+      'Programa práctico de iniciación al periodismo dirigido a los dos primeros ciclos de Secundaria, centrado en conocer los principales textos periodísticos y aprender especialmente a redactar una noticia.',
+    duration: '1 mes · 2 horas semanales',
+    development:
+      'A lo largo de las sesiones se trabajan las principales tipologías textuales periodísticas mediante explicación, ejemplos y ejercicios prácticos. El alumnado aprende a seleccionar la información relevante, organizar los datos, construir un titular y redactar y revisar una noticia con claridad. El planteamiento conecta con la experiencia de Periodistas Junior, proyecto diseñado por Jorge Morcillo en el que estudiantes trabajaron como una pequeña redacción periodística.',
+    objective:
+      'Conocer las características básicas de los textos periodísticos y adquirir herramientas para interpretar y producir información, con especial atención a la estructura, la selección de datos y la redacción clara y rigurosa de una noticia.',
     referenceHref: 'https://www.elperiodic.com/alboraya/escolares-entrevistan-concejal-manuel-duenas_276770',
     referenceLabel: 'Ver la experiencia «Periodistas Junior» en El Periodic'
   }
@@ -104,6 +127,22 @@ const workshopMailto = (title: string) =>
           <p class="workshop-card__meta">{workshop.meta}</p>
           <h2>{workshop.title}</h2>
           <p class="workshop-card__description">{workshop.description}</p>
+
+          <div class="workshop-card__duration">
+            <span>Duración</span>
+            <strong>{workshop.duration}</strong>
+          </div>
+
+          <div class="workshop-card__details">
+            <section>
+              <h3>Desarrollo</h3>
+              <p>{workshop.development}</p>
+            </section>
+            <section>
+              <h3>Objetivo</h3>
+              <p>{workshop.objective}</p>
+            </section>
+          </div>
 
           {workshop.bookHref && workshop.bookLabel && (
             <a class="text-link workshop-card__book" href={workshop.bookHref}>

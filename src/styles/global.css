@@ -2803,3 +2803,66 @@ body {
   white-space: nowrap !important;
   border: 0 !important;
 }
+
+/* S9.8 · Talleres: duración, desarrollo y objetivo */
+.workshop-card__duration {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.8rem;
+  align-items: baseline;
+  width: fit-content;
+  margin-top: 0.15rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+}
+
+.workshop-card__duration span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.workshop-card__duration strong {
+  color: var(--ink);
+  font-size: 0.92rem;
+}
+
+.workshop-card__details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 1.6rem);
+  margin-top: 0.35rem;
+}
+
+.workshop-card__details section {
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.workshop-card__details h3 {
+  margin: 0 0 0.5rem;
+  color: var(--accent);
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.workshop-card__details p {
+  margin: 0;
+  color: color-mix(in srgb, var(--ink) 88%, var(--muted));
+  font-size: 0.98rem;
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+@media (max-width: 680px) {
+  .workshop-card__details {
+    grid-template-columns: 1fr;
+  }
+}
