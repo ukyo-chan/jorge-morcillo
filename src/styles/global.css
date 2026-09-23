@@ -503,6 +503,13 @@ a:hover {
   line-height: 1.65;
 }
 
+.book-detail__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+}
+
 .book-detail__grid {
   display: grid;
   grid-template-columns: minmax(210px, 0.34fr) minmax(0, 1fr);
