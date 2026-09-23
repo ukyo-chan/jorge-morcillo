@@ -4,8 +4,10 @@ export const site = {
   shortDescriptor: 'Escritor · Profesor · Periodista',
   language: 'es',
   locale: 'es_ES',
+  url: 'https://jorgemorcillo.com',
   contactEmail: 'jorge.morcillo@tomasmorcillo.com',
-  indexingEnabled: false
+  defaultSocialImage: '/assets/img/autor/jorge-morcillo-retrato-home.png',
+  indexingEnabled: true
 } as const;
 
 export const navigation = [

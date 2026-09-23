@@ -116,9 +116,22 @@ S5 convierte `/autor/` en una biografía editorial completa. La página presenta
 
 S7.1 simplifica `/contacto/` a una página directa y publicable. El canal provisional de contacto profesional es `jorge.morcillo@tomasmorcillo.com`, centralizado en `src/lib/site.ts` para poder sustituirlo fácilmente más adelante. La Home enlaza directamente a ese correo y la página de Contacto conserva únicamente una presentación breve, el correo y accesos al resto del sitio.
 
-## Configuración pendiente
+## Dominio y producción
 
-Aún no se fijan `site`, `base` ni `CNAME` porque dependen del repositorio y dominio definitivos.
+El dominio canónico es `https://jorgemorcillo.com`. `astro.config.mjs` define `site` con ese dominio y `public/CNAME` contiene `jorgemorcillo.com` para el despliegue con GitHub Pages. La indexación está activada (`site.indexingEnabled = true`).
+
+S9 añade además:
+
+- canonical absolutos;
+- Open Graph y Twitter Cards con imagen por defecto y portadas específicas en libros;
+- `public/robots.txt`;
+- `/sitemap.xml` generado desde las rutas públicas y la colección de libros;
+- JSON-LD `WebSite` y `Person` en Home;
+- JSON-LD `Person` en Autor;
+- JSON-LD `Book` y `BreadcrumbList` en fichas de libro;
+- breadcrumbs estructurados en Libros, Autor, Prensa y Contacto.
+
+Las referencias de prensa enlazan artículos externos, por lo que no se marcan como `Article` o `NewsArticle` propios del sitio.
 
 ## Estado de implementación
 
@@ -137,6 +150,7 @@ Aún no se fijan `site`, `base` ni `CNAME` porque dependen del repositorio y dom
 - S7 — Contacto profesional: completado.
 - S7.1 — Contacto simplificado con correo provisional: completado.
 - S8 — QA visual, responsive y accesibilidad global: completado.
+- S9 — SEO técnico, sitemap y datos estructurados: completado.
 
 ## Estado S6
 
@@ -146,7 +160,7 @@ La colección de prensa distingue ahora entre `prensa` y `plataformas`. `/prensa
 
 S8 unifica el comportamiento visual de Home, Autor, Prensa, Contacto y fichas de libro. Ajusta la cabecera sticky en tablet/móvil, targets táctiles, offsets de anclas y elementos sticky, escalado tipográfico, grids y tarjetas, y añade refinamientos para 920, 820, 680 y 480 px.
 
-Mientras la web siga en prepublicación, `site.indexingEnabled` permanece en `false`: el layout emite `noindex, nofollow` por defecto para evitar indexación accidental. Se activará de forma centralizada al preparar producción.
+S9 cambia `site.indexingEnabled` a `true` porque el siguiente despliegue está pensado ya como publicación indexable. El layout conserva el parámetro `noindex` por página para futuras excepciones.
 
 ## Validación por slice
 
@@ -154,3 +168,8 @@ Mientras la web siga en prepublicación, `site.indexingEnabled` permanece en `fa
 npm.cmd run build
 npm.cmd run preview
 ```
+
+## Backlog próximo
+
+- Confirmar y añadir redes sociales oficiales cuando se decida qué perfiles publicar, probablemente en Contacto y footer.
+- Sustituir más adelante la imagen social por defecto por una pieza Open Graph horizontal específica si se considera necesario.

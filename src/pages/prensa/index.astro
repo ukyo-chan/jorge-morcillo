@@ -3,6 +3,7 @@ import PageIntro from '../../components/PageIntro.astro';
 import PressCard from '../../components/PressCard.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { getEditorialPlatforms, getPressCoverage } from '../../lib/content';
+import { breadcrumbStructuredData } from '../../lib/seo';
 
 const press = await getPressCoverage();
 const platforms = await getEditorialPlatforms();
@@ -11,6 +12,10 @@ const platforms = await getEditorialPlatforms();
 <SiteLayout
   title="Prensa"
   description="Apariciones en prensa, entrevistas, cobertura cultural y referencias editoriales sobre la obra de Jorge Morcillo Jareño."
+  structuredData={breadcrumbStructuredData([
+    { name: 'Inicio', path: '/' },
+    { name: 'Prensa', path: '/prensa/' }
+  ])}
 >
   <PageIntro
     eyebrow="Archivo"

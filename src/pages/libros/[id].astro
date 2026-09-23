@@ -3,6 +3,7 @@ import { render } from 'astro:content';
 import BookCover from '../../components/BookCover.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { getPublishedBooks, type LibroEntry } from '../../lib/content';
+import { bookStructuredData, breadcrumbStructuredData } from '../../lib/seo';
 
 export async function getStaticPaths() {
   const books = await getPublishedBooks();
@@ -28,6 +29,17 @@ const title = book.data.seo?.title ?? book.data.titulo;
   description={description}
   ogType="book"
   image={book.data.imagenPrincipal?.src}
+  imageAlt={book.data.imagenPrincipal?.alt}
+  imageWidth={book.data.imagenPrincipal?.width}
+  imageHeight={book.data.imagenPrincipal?.height}
+  structuredData={[
+    bookStructuredData(book),
+    breadcrumbStructuredData([
+      { name: 'Inicio', path: '/' },
+      { name: 'Libros', path: '/libros/' },
+      { name: book.data.titulo, path: `/libros/${book.id}/` }
+    ])
+  ]}
 >
   <nav class="breadcrumbs" aria-label="Migas de pan">
     <a href="/#libros">Libros</a>

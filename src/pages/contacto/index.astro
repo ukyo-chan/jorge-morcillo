@@ -1,5 +1,6 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
+import { breadcrumbStructuredData } from '../../lib/seo';
 import { site } from '../../lib/site';
 
 const mailto = `mailto:${site.contactEmail}`;
@@ -8,6 +9,10 @@ const mailto = `mailto:${site.contactEmail}`;
 <SiteLayout
   title="Contacto"
   description="Contacto profesional con Jorge Morcillo Jareño para prensa, presentaciones, encuentros con lectores, centros educativos y propuestas relacionadas con su obra."
+  structuredData={breadcrumbStructuredData([
+    { name: 'Inicio', path: '/' },
+    { name: 'Contacto', path: '/contacto/' }
+  ])}
 >
   <section class="contact-simple" aria-labelledby="contact-title">
     <div class="contact-simple__intro">

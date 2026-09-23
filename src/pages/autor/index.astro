@@ -1,5 +1,6 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
+import { breadcrumbStructuredData, personStructuredData } from '../../lib/seo';
 import { site } from '../../lib/site';
 ---
 
@@ -7,6 +8,16 @@ import { site } from '../../lib/site';
   title="Sobre Jorge"
   description="Biografía y trayectoria de Jorge Morcillo Jareño, escritor valenciano, profesor de Lengua Castellana y Literatura y periodista."
   image="/assets/img/autor/jorge-morcillo-retrato-home.png"
+  imageAlt="Retrato editorial de Jorge Morcillo Jareño al aire libre"
+  imageWidth={1122}
+  imageHeight={1402}
+  structuredData={[
+    personStructuredData(),
+    breadcrumbStructuredData([
+      { name: 'Inicio', path: '/' },
+      { name: 'Sobre Jorge', path: '/autor/' }
+    ])
+  ]}
 >
   <article class="author-page">
     <nav class="breadcrumbs" aria-label="Migas de pan">

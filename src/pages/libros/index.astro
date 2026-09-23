@@ -3,6 +3,7 @@ import BookCard from '../../components/BookCard.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { getPublishedBooks } from '../../lib/content';
+import { breadcrumbStructuredData } from '../../lib/seo';
 
 const books = await getPublishedBooks();
 ---
@@ -10,6 +11,10 @@ const books = await getPublishedBooks();
 <SiteLayout
   title="Libros"
   description="Libros publicados por Jorge Morcillo Jareño. Literatura infantil y juvenil sobre memoria, familia, territorio, educación y nuevas generaciones."
+  structuredData={breadcrumbStructuredData([
+    { name: 'Inicio', path: '/' },
+    { name: 'Libros', path: '/libros/' }
+  ])}
 >
   <PageIntro
     eyebrow="Obra publicada"

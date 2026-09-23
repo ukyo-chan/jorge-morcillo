@@ -3,6 +3,7 @@ import BookCard from '../components/BookCard.astro';
 import PressCard from '../components/PressCard.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { getAgendaEvents, getFeaturedBooks, getFeaturedPress } from '../lib/content';
+import { personStructuredData, websiteStructuredData } from '../lib/seo';
 import { site } from '../lib/site';
 
 const books = await getFeaturedBooks();
@@ -14,6 +15,10 @@ const agenda = (await getAgendaEvents()).slice(0, 3);
   title={site.name}
   description="Web profesional de Jorge Morcillo Jareño, escritor valenciano, profesor de Lengua Castellana y Literatura y periodista. Libros, biografía, prensa y actividad pública."
   image="/assets/img/autor/jorge-morcillo-retrato-home.png"
+  imageAlt="Retrato editorial de Jorge Morcillo Jareño al aire libre"
+  imageWidth={1122}
+  imageHeight={1402}
+  structuredData={[websiteStructuredData(), personStructuredData()]}
 >
   <section class="home-hero" aria-labelledby="home-hero-title">
     <div class="home-hero__copy">
