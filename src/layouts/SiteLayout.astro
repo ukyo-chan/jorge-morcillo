@@ -16,8 +16,10 @@ const {
   description,
   ogType = 'website',
   image,
-  noindex = false
+  noindex
 } = Astro.props;
+
+const shouldNoindex = noindex ?? !site.indexingEnabled;
 
 const pageTitle = title === site.name ? site.name : `${title} | ${site.name}`;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : undefined;
@@ -33,7 +35,7 @@ const currentYear = new Date().getFullYear();
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="author" content={site.name} />
-    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta name="robots" content={shouldNoindex ? 'noindex, nofollow' : 'index, follow'} />
     <meta name="theme-color" content="#f5f1e8" />
 
     <meta property="og:type" content={ogType} />

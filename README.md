@@ -136,10 +136,17 @@ Aún no se fijan `site`, `base` ni `CNAME` porque dependen del repositorio y dom
 - S6 — Prensa completa y referencias editoriales: completado.
 - S7 — Contacto profesional: completado.
 - S7.1 — Contacto simplificado con correo provisional: completado.
+- S8 — QA visual, responsive y accesibilidad global: completado.
 
 ## Estado S6
 
 La colección de prensa distingue ahora entre `prensa` y `plataformas`. `/prensa/` muestra por separado cobertura periodística/entrevistas y fichas editoriales, plataformas y recepción de lectores. La Home continúa usando únicamente las apariciones marcadas como destacadas dentro de la cobertura periodística.
+
+## S8 · QA visual y responsive
+
+S8 unifica el comportamiento visual de Home, Autor, Prensa, Contacto y fichas de libro. Ajusta la cabecera sticky en tablet/móvil, targets táctiles, offsets de anclas y elementos sticky, escalado tipográfico, grids y tarjetas, y añade refinamientos para 920, 820, 680 y 480 px.
+
+Mientras la web siga en prepublicación, `site.indexingEnabled` permanece en `false`: el layout emite `noindex, nofollow` por defecto para evitar indexación accidental. Se activará de forma centralizada al preparar producción.
 
 ## Validación por slice
 

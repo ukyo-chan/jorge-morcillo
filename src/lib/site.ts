@@ -4,7 +4,8 @@ export const site = {
   shortDescriptor: 'Escritor · Profesor · Periodista',
   language: 'es',
   locale: 'es_ES',
-  contactEmail: 'jorge.morcillo@tomasmorcillo.com'
+  contactEmail: 'jorge.morcillo@tomasmorcillo.com',
+  indexingEnabled: false
 } as const;
 
 export const navigation = [
