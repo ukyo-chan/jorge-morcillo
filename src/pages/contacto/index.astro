@@ -23,10 +23,43 @@ const mailto = `mailto:${site.contactEmail}`;
       </p>
     </div>
 
-    <div class="contact-simple__channel">
-      <p class="contact-simple__label">Correo</p>
-      <a class="contact-simple__email" href={mailto}>{site.contactEmail}</a>
-      <a class="button-link button-link--primary" href={mailto}>Escribir a Jorge</a>
+    <figure class="contact-simple__portrait">
+      <img
+        src="/assets/img/contacto/jorge-morcillo-contacto.webp"
+        alt="Jorge Morcillo con el auricular de un teléfono de rueda"
+        width="1150"
+        height="1368"
+        loading="eager"
+        decoding="async"
+      />
+    </figure>
+
+    <div class="contact-simple__channels" aria-label="Canales de contacto">
+      <div class="contact-simple__channel">
+        <p class="contact-simple__label">Correo</p>
+        <a class="contact-simple__email" href={mailto}>{site.contactEmail}</a>
+        <a class="button-link button-link--primary" href={mailto}>Escribir a Jorge</a>
+      </div>
+
+      <div class="contact-simple__channel">
+        <p class="contact-simple__label">Instagram</p>
+        <a
+          class="contact-simple__social"
+          href={site.instagramUrl}
+          target="_blank"
+          rel="me noopener noreferrer"
+        >
+          {site.instagramHandle}
+        </a>
+        <a
+          class="button-link"
+          href={site.instagramUrl}
+          target="_blank"
+          rel="me noopener noreferrer"
+        >
+          Ver Instagram
+        </a>
+      </div>
     </div>
   </section>
 

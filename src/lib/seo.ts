@@ -32,7 +32,8 @@ export function personStructuredData(): StructuredData {
     image: absoluteUrl(site.defaultSocialImage),
     jobTitle: 'Escritor, profesor de Lengua Castellana y Literatura y periodista',
     description:
-      'Escritor valenciano, profesor de Lengua Castellana y Literatura y periodista, nacido en València y criado en Alboraya.'
+      'Escritor valenciano, profesor de Lengua Castellana y Literatura y periodista, nacido en València y criado en Alboraya.',
+    sameAs: [site.instagramUrl]
   };
 }
 

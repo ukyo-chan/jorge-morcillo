@@ -103,7 +103,17 @@ const serializedStructuredData = structuredDataItems.map((item) =>
           <p class="site-footer__name">{site.name}</p>
           <p class="site-footer__descriptor">{site.descriptor}</p>
         </div>
-        <p class="site-footer__meta">© {currentYear}</p>
+        <div class="site-footer__meta">
+          <a
+            class="site-footer__social"
+            href={site.instagramUrl}
+            target="_blank"
+            rel="me noopener noreferrer"
+          >
+            Instagram {site.instagramHandle}
+          </a>
+          <span>© {currentYear}</span>
+        </div>
       </div>
     </footer>
   </body>

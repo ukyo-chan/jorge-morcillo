@@ -183,3 +183,8 @@ npm.cmd run preview
 
 - Confirmar y añadir redes sociales oficiales cuando se decida qué perfiles publicar, probablemente en Contacto y footer.
 - Sustituir más adelante la imagen social por defecto por una pieza Open Graph horizontal específica si se considera necesario.
+
+
+## S9.10 · Instagram
+
+Se incorpora el perfil oficial de Instagram `@bomt1986` como canal de contacto, visible en `/contacto/` y en el pie global. La URL queda centralizada en `src/lib/site.ts` y se añade a `sameAs` del JSON-LD `Person`.

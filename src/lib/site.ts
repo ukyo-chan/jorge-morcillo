@@ -6,6 +6,8 @@ export const site = {
   locale: 'es_ES',
   url: 'https://jorgemorcillo.com',
   contactEmail: 'jorge.morcillo@tomasmorcillo.com',
+  instagramHandle: '@bomt1986',
+  instagramUrl: 'https://www.instagram.com/bomt1986/',
   defaultSocialImage: '/assets/img/autor/jorge-morcillo-retrato-home.png',
   indexingEnabled: true
 } as const;
