@@ -12,22 +12,45 @@ interface Props {
   image: CoverImage;
   loading?: 'eager' | 'lazy';
   priority?: boolean;
+  galleryTarget?: string;
+  galleryLabel?: string;
 }
 
-const { image, loading = 'lazy', priority = false } = Astro.props;
+const { image, loading = 'lazy', priority = false, galleryTarget, galleryLabel = 'Ver imágenes del interior' } = Astro.props;
 ---
 
 <figure class="book-cover">
   <div class="book-cover__frame">
-    <img
-      src={image.src}
-      alt={image.alt}
-      width={image.width}
-      height={image.height}
-      loading={loading}
-      fetchpriority={priority ? 'high' : 'auto'}
-      decoding="async"
-    />
+    {galleryTarget ? (
+      <button
+        type="button"
+        class="book-cover__gallery-trigger"
+        data-gallery-open={galleryTarget}
+        data-gallery-index="0"
+        aria-label={galleryLabel}
+      >
+        <img
+          src={image.src}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          loading={loading}
+          fetchpriority={priority ? 'high' : 'auto'}
+          decoding="async"
+        />
+        <span class="book-cover__gallery-hint" aria-hidden="true">Ver interior</span>
+      </button>
+    ) : (
+      <img
+        src={image.src}
+        alt={image.alt}
+        width={image.width}
+        height={image.height}
+        loading={loading}
+        fetchpriority={priority ? 'high' : 'auto'}
+        decoding="async"
+      />
+    )}
   </div>
   {(image.pie || image.credito) && (
     <figcaption>

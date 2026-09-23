@@ -15,6 +15,27 @@ imagenPrincipal:
   credito: "Ilustración de portada: Carlos Mercé"
   width: 1365
   height: 2048
+galeria:
+  - src: "/assets/img/libros/cuentos-valencianos-para-compartir/interior-01.webp"
+    alt: "Ilustración interior de Cuentos valencianos para compartir con una niña conversando con un dragón."
+    credito: "Ilustración: Carlos Mercé"
+    width: 1483
+    height: 1500
+  - src: "/assets/img/libros/cuentos-valencianos-para-compartir/interior-02.webp"
+    alt: "Ilustración interior de Cuentos valencianos para compartir con una reinterpretación fantástica de monumentos valencianos."
+    credito: "Ilustración: Carlos Mercé"
+    width: 1284
+    height: 1500
+  - src: "/assets/img/libros/cuentos-valencianos-para-compartir/interior-03.webp"
+    alt: "Ilustración interior de Cuentos valencianos para compartir con una niña señalando una estrella sobre un paisaje valenciano."
+    credito: "Ilustración: Carlos Mercé"
+    width: 1352
+    height: 1500
+  - src: "/assets/img/libros/cuentos-valencianos-para-compartir/interior-04.webp"
+    alt: "Ilustración interior de Cuentos valencianos para compartir con personajes animales en una aventura pirata."
+    credito: "Ilustración: Carlos Mercé"
+    width: 1500
+    height: 1497
 claves:
   - "cuentos valencianos"
   - "literatura infantil y juvenil"
@@ -33,8 +54,8 @@ claves:
 enlaces:
   - texto: "Comprar en la editorial"
     url: "https://www.editoriallotoazul.com/libro/cuentos-valencianos-para-compartir_158050/"
-  - texto: "Encontrar en librerías"
-    url: "https://www.todostuslibros.com/libros/cuentos-valencianos-para-compartir_978-84-128354-3-4"
+  - texto: "Comprar en Amazon"
+    url: "https://www.amazon.es/Cuentos-valencianos-para-compartir-diversidad/dp/8412835433/"
   - texto: "Ver en Librotea"
     url: "https://librotea.eldiario.es/libros/cuentos-valencianos-para-compartir"
 verificacion:
@@ -44,8 +65,8 @@ verificacion:
       url: "https://www.editoriallotoazul.com/libro/cuentos-valencianos-para-compartir_158050/"
     - nombre: "Europa Press"
       url: "https://www.europapress.es/comunitat-valenciana/noticia-jorge-morcillo-jareno-moderniza-folklore-valenciano-libro-cuentos-magicos-20240627120350.html"
-    - nombre: "TodosTusLibros / CEGAL"
-      url: "https://www.todostuslibros.com/libros/cuentos-valencianos-para-compartir_978-84-128354-3-4"
+    - nombre: "Amazon"
+      url: "https://www.amazon.es/Cuentos-valencianos-para-compartir-diversidad/dp/8412835433/"
 seo:
   title: "Cuentos valencianos para compartir | Cuentos infantiles"
   description: "Descubre Cuentos valencianos para compartir, de Jorge Morcillo Jareño: 7 relatos infantiles sobre Valencia, folklore, aventura, familia y diversidad."

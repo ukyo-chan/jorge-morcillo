@@ -2494,3 +2494,312 @@ body {
     width: 100%;
   }
 }
+
+/* S9.6 · Galerías interiores de los libros */
+
+.book-cover__gallery-trigger {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: zoom-in;
+}
+
+.book-cover__gallery-trigger img {
+  transition: transform 180ms ease;
+}
+
+.book-cover__gallery-trigger:hover img,
+.book-cover__gallery-trigger:focus-visible img {
+  transform: scale(1.018);
+}
+
+.book-cover__gallery-trigger:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: -3px;
+}
+
+.book-cover__gallery-hint {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  padding: 0.46rem 0.72rem;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  background: rgba(31, 36, 33, 0.82);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(8px);
+}
+
+.book-gallery {
+  display: grid;
+  gap: 1.35rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.book-gallery__header {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.book-gallery__header h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.45rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.book-gallery__header p {
+  max-width: 56ch;
+  margin: 0;
+  color: var(--muted);
+}
+
+.book-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+  gap: 0.85rem;
+}
+
+.book-gallery__thumb {
+  position: relative;
+  display: block;
+  min-height: 150px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface) 88%, var(--page));
+  cursor: zoom-in;
+  box-shadow: 0 5px 14px rgba(31, 36, 33, 0.06);
+}
+
+.book-gallery__thumb img {
+  width: 100%;
+  height: 100%;
+  min-height: 150px;
+  max-height: 190px;
+  object-fit: cover;
+  transition: transform 180ms ease, filter 180ms ease;
+}
+
+.book-gallery__thumb:hover img,
+.book-gallery__thumb:focus-visible img {
+  transform: scale(1.035);
+  filter: saturate(1.03) contrast(1.02);
+}
+
+.book-gallery__thumb:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.book-gallery__zoom {
+  position: absolute;
+  right: 0.55rem;
+  bottom: 0.55rem;
+  padding: 0.34rem 0.58rem;
+  border-radius: 999px;
+  background: rgba(31, 36, 33, 0.82);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.035em;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.book-gallery__thumb:hover .book-gallery__zoom,
+.book-gallery__thumb:focus-visible .book-gallery__zoom {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.book-lightbox {
+  width: min(94vw, 1180px);
+  max-width: none;
+  max-height: 94vh;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  color: #fff;
+}
+
+.book-lightbox::backdrop {
+  background: rgba(17, 20, 18, 0.86);
+  backdrop-filter: blur(7px);
+}
+
+.book-lightbox__panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "prev figure next"
+    ". counter .";
+  gap: 0.75rem 1rem;
+  align-items: center;
+  width: 100%;
+  max-height: 92vh;
+}
+
+.book-lightbox__figure {
+  grid-area: figure;
+  display: grid;
+  gap: 0.65rem;
+  justify-items: center;
+  margin: 0;
+  min-width: 0;
+}
+
+.book-lightbox__figure img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 82vh;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+  object-fit: contain;
+}
+
+.book-lightbox__figure figcaption {
+  max-width: 70ch;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+.book-lightbox__close,
+.book-lightbox__nav {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  background: rgba(31, 36, 33, 0.78);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.book-lightbox__close:hover,
+.book-lightbox__nav:hover,
+.book-lightbox__close:focus-visible,
+.book-lightbox__nav:focus-visible {
+  background: rgba(54, 94, 82, 0.96);
+}
+
+.book-lightbox__close:focus-visible,
+.book-lightbox__nav:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.book-lightbox__close {
+  position: absolute;
+  top: -0.2rem;
+  right: -0.2rem;
+  z-index: 3;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.book-lightbox__nav--prev {
+  grid-area: prev;
+}
+
+.book-lightbox__nav--next {
+  grid-area: next;
+}
+
+.book-lightbox__counter {
+  grid-area: counter;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+@media (max-width: 650px) {
+  .book-gallery__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .book-gallery__thumb,
+  .book-gallery__thumb img {
+    min-height: 125px;
+  }
+
+  .book-gallery__thumb img {
+    max-height: 155px;
+  }
+
+  .book-gallery__zoom {
+    display: none;
+  }
+
+  .book-lightbox {
+    width: 96vw;
+  }
+
+  .book-lightbox__panel {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "figure figure"
+      "prev next"
+      "counter counter";
+    gap: 0.8rem;
+  }
+
+  .book-lightbox__nav--prev {
+    justify-self: end;
+  }
+
+  .book-lightbox__nav--next {
+    justify-self: start;
+  }
+
+  .book-lightbox__figure img {
+    max-height: 74vh;
+  }
+
+  .book-lightbox__close {
+    top: 0.45rem;
+    right: 0.45rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book-cover__gallery-trigger img,
+  .book-gallery__thumb img,
+  .book-gallery__zoom {
+    transition: none;
+  }
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}

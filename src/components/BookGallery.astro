@@ -1,0 +1,147 @@
+---
+interface GalleryImage {
+  src: string;
+  alt: string;
+  pie?: string;
+  credito?: string;
+  width?: number;
+  height?: number;
+}
+
+interface Props {
+  images: GalleryImage[];
+  title?: string;
+  description?: string;
+  id: string;
+}
+
+const {
+  images,
+  title = 'Un vistazo al interior',
+  description = 'Haz clic en una imagen para verla a mayor tamaño.',
+  id
+} = Astro.props;
+---
+
+{images.length > 0 && (
+  <section class="book-gallery" aria-labelledby={`${id}-title`}>
+    <header class="book-gallery__header">
+      <h2 id={`${id}-title`}>{title}</h2>
+      <p>{description}</p>
+    </header>
+
+    <div class="book-gallery__grid">
+      {images.map((image, index) => (
+        <button
+          type="button"
+          class="book-gallery__thumb"
+          data-gallery-open={id}
+          data-gallery-index={String(index)}
+          data-gallery-item
+          data-src={image.src}
+          data-alt={image.alt}
+          data-caption={image.pie ?? image.credito ?? ''}
+          aria-label={`Ampliar imagen ${index + 1} de ${images.length}`}
+        >
+          <img
+            src={image.src}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="book-gallery__zoom" aria-hidden="true">Ampliar</span>
+        </button>
+      ))}
+    </div>
+
+    <dialog class="book-lightbox" id={id} data-book-gallery-dialog aria-labelledby={`${id}-dialog-title`}>
+      <div class="book-lightbox__panel">
+        <h2 class="visually-hidden" id={`${id}-dialog-title`}>Galería de imágenes del libro</h2>
+
+        <button type="button" class="book-lightbox__close" data-gallery-close aria-label="Cerrar galería">
+          <span aria-hidden="true">×</span>
+        </button>
+
+        <button type="button" class="book-lightbox__nav book-lightbox__nav--prev" data-gallery-prev aria-label="Imagen anterior">
+          <span aria-hidden="true">←</span>
+        </button>
+
+        <figure class="book-lightbox__figure">
+          <img data-gallery-image src={images[0].src} alt={images[0].alt} />
+          <figcaption data-gallery-caption hidden={!((images[0].pie ?? images[0].credito) ?? '')}>{images[0].pie ?? images[0].credito ?? ''}</figcaption>
+        </figure>
+
+        <button type="button" class="book-lightbox__nav book-lightbox__nav--next" data-gallery-next aria-label="Imagen siguiente">
+          <span aria-hidden="true">→</span>
+        </button>
+
+        <p class="book-lightbox__counter" data-gallery-counter aria-live="polite"></p>
+      </div>
+    </dialog>
+  </section>
+)}
+
+<script>
+  const galleries = document.querySelectorAll<HTMLDialogElement>('[data-book-gallery-dialog]');
+
+  galleries.forEach((dialog) => {
+    const id = dialog.id;
+    const items = Array.from(
+      document.querySelectorAll<HTMLButtonElement>(`[data-gallery-open="${id}"][data-gallery-item]`)
+    );
+    const openers = Array.from(
+      document.querySelectorAll<HTMLButtonElement>(`[data-gallery-open="${id}"]`)
+    );
+    const image = dialog.querySelector<HTMLImageElement>('[data-gallery-image]');
+    const caption = dialog.querySelector<HTMLElement>('[data-gallery-caption]');
+    const counter = dialog.querySelector<HTMLElement>('[data-gallery-counter]');
+    const previous = dialog.querySelector<HTMLButtonElement>('[data-gallery-prev]');
+    const next = dialog.querySelector<HTMLButtonElement>('[data-gallery-next]');
+    const close = dialog.querySelector<HTMLButtonElement>('[data-gallery-close]');
+
+    if (!image || !caption || !counter || items.length === 0) return;
+
+    let activeIndex = 0;
+
+    const showImage = (index: number) => {
+      activeIndex = (index + items.length) % items.length;
+      const item = items[activeIndex];
+      image.src = item.dataset.src ?? '';
+      image.alt = item.dataset.alt ?? '';
+      caption.textContent = item.dataset.caption ?? '';
+      caption.hidden = !caption.textContent;
+      counter.textContent = `${activeIndex + 1} / ${items.length}`;
+      if (previous) previous.hidden = items.length < 2;
+      if (next) next.hidden = items.length < 2;
+    };
+
+    openers.forEach((opener) => {
+      opener.addEventListener('click', () => {
+        const index = Number(opener.dataset.galleryIndex ?? '0');
+        showImage(Number.isFinite(index) ? index : 0);
+        dialog.showModal();
+      });
+    });
+
+    previous?.addEventListener('click', () => showImage(activeIndex - 1));
+    next?.addEventListener('click', () => showImage(activeIndex + 1));
+    close?.addEventListener('click', () => dialog.close());
+
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    dialog.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        showImage(activeIndex - 1);
+      }
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        showImage(activeIndex + 1);
+      }
+    });
+  });
+</script>

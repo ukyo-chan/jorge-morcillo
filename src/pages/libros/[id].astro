@@ -1,6 +1,7 @@
 ---
 import { render } from 'astro:content';
 import BookCover from '../../components/BookCover.astro';
+import BookGallery from '../../components/BookGallery.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { getPublishedBooks, type LibroEntry } from '../../lib/content';
 import { bookStructuredData, breadcrumbStructuredData } from '../../lib/seo';
@@ -24,6 +25,7 @@ const description = book.data.seo?.description ?? book.data.resumen;
 const title = book.data.seo?.title ?? book.data.titulo;
 const primaryLinks = book.data.enlaces.slice(0, 2);
 const secondaryLinks = book.data.enlaces.slice(2);
+const galleryId = `book-gallery-${book.id}`;
 ---
 
 <SiteLayout
@@ -53,7 +55,13 @@ const secondaryLinks = book.data.enlaces.slice(2);
     <div class="book-detail__hero">
       {book.data.imagenPrincipal && (
         <div class="book-detail__cover">
-          <BookCover image={book.data.imagenPrincipal} loading="eager" priority />
+          <BookCover
+            image={book.data.imagenPrincipal}
+            loading="eager"
+            priority
+            galleryTarget={book.data.galeria.length > 0 ? galleryId : undefined}
+            galleryLabel={book.data.galeria.length > 0 ? `Ver imágenes del interior de ${book.data.titulo}` : undefined}
+          />
         </div>
       )}
 
@@ -122,6 +130,15 @@ const secondaryLinks = book.data.enlaces.slice(2);
         <div class="prose book-prose">
           <Content />
         </div>
+
+        {book.data.galeria.length > 0 && (
+          <BookGallery
+            id={galleryId}
+            images={book.data.galeria}
+            title="Por dentro del libro"
+            description="Una selección de páginas e ilustraciones. Haz clic en cualquier imagen para ampliarla."
+          />
+        )}
 
         {book.data.claves.length > 0 && (
           <section class="book-topics" aria-labelledby="book-topics-title">
