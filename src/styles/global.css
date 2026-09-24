@@ -114,9 +114,22 @@ a:hover {
 
 .site-brand {
   display: inline-flex;
+  align-items: center;
+  gap: 0.95rem;
+  text-decoration: none;
+}
+
+.site-brand__mark {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 auto;
+  border-radius: 14px;
+}
+
+.site-brand__text {
+  display: inline-flex;
   flex-direction: column;
   gap: 0.15rem;
-  text-decoration: none;
 }
 
 .site-brand__name {
@@ -256,6 +269,19 @@ a:hover {
   margin: 0;
 }
 
+.site-footer__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.site-footer__mark {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  border-radius: 12px;
+}
+
 .site-footer__name {
   font-family: var(--font-display);
   font-size: 1.05rem;
@@ -318,6 +344,15 @@ a:hover {
   .site-footer__inner,
   .site-main {
     width: min(calc(100% - 1.4rem), var(--max-width));
+  }
+
+  .site-brand {
+    gap: 0.75rem;
+  }
+
+  .site-brand__mark {
+    width: 44px;
+    height: 44px;
   }
 
   .site-brand__descriptor {
@@ -2009,6 +2044,15 @@ body {
 }
 
 @media (max-width: 1040px) {
+  .site-brand {
+    gap: 0.75rem;
+  }
+
+  .site-brand__mark {
+    width: 44px;
+    height: 44px;
+  }
+
   .site-brand__descriptor {
     display: none;
   }

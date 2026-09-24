@@ -8,6 +8,9 @@ export const site = {
   contactEmail: 'jorge.morcillo@tomasmorcillo.com',
   instagramHandle: '@bomt1986',
   instagramUrl: 'https://www.instagram.com/bomt1986/',
+  brandLogo: '/assets/img/brand/jorge-morcillo-logo.png',
+  faviconLight: '/assets/img/brand/favicon-light.png',
+  faviconDark: '/assets/img/brand/favicon-dark.png',
   defaultSocialImage: '/assets/img/autor/jorge-morcillo-retrato-home.png',
   indexingEnabled: true
 } as const;
