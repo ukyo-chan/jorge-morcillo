@@ -70,3 +70,19 @@ const mailto = `mailto:${site.contactEmail}`;
     <a href="/prensa/">Prensa <span aria-hidden="true">→</span></a>
   </nav>
 </SiteLayout>
+
+<style>
+  #contact-title {
+    max-width: none;
+    overflow-wrap: normal;
+    word-break: normal;
+    white-space: nowrap;
+    font-size: clamp(4rem, 8vw, 7rem);
+  }
+
+  @media (max-width: 480px) {
+    #contact-title {
+      font-size: clamp(2.9rem, 15vw, 4.45rem);
+    }
+  }
+</style>
