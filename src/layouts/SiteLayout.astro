@@ -88,22 +88,24 @@ const serializedStructuredData = structuredDataItems.map((item) =>
 
     <header class="site-header">
       <div class="site-header__inner">
-        <a class="site-brand" href="/" aria-label={`${site.name}, inicio`}>
-          <img
-            class="site-brand__mark"
-            src={site.brandLogo}
-            alt=""
-            width="54"
-            height="54"
-            loading="eager"
-            decoding="async"
-          />
-          <span class="site-brand__text">
-            <span class="site-brand__name">{site.name}</span>
-            <span class="site-brand__descriptor">{site.shortDescriptor}</span>
-          </span>
-        </a>
-        <SiteNavigation />
+        <div class="site-header__bar">
+          <a class="site-brand" href="/" aria-label={`${site.name}, inicio`}>
+            <img
+              class="site-brand__mark"
+              src={site.brandLogo}
+              alt=""
+              width="54"
+              height="54"
+              loading="eager"
+              decoding="async"
+            />
+            <span class="site-brand__text">
+              <span class="site-brand__name">{site.name}</span>
+              <span class="site-brand__descriptor">{site.shortDescriptor}</span>
+            </span>
+          </a>
+          <SiteNavigation />
+        </div>
       </div>
     </header>
 
@@ -113,31 +115,29 @@ const serializedStructuredData = structuredDataItems.map((item) =>
 
     <footer class="site-footer">
       <div class="site-footer__inner">
-        <div class="site-footer__brand">
-          <img
-            class="site-footer__mark"
-            src={site.brandLogo}
-            alt=""
-            width="46"
-            height="46"
-            loading="lazy"
-            decoding="async"
-          />
-          <div>
-            <p class="site-footer__name">{site.name}</p>
-            <p class="site-footer__descriptor">{site.descriptor}</p>
-          </div>
-        </div>
+        <p class="site-footer__name">{site.name}</p>
         <div class="site-footer__meta">
           <a
-            class="site-footer__social"
+            class="site-footer__action"
             href={site.instagramUrl}
             target="_blank"
             rel="me noopener noreferrer"
+            aria-label={`Instagram de ${site.name}: ${site.instagramHandle}`}
+            title={`Instagram ${site.instagramHandle}`}
           >
-            Instagram {site.instagramHandle}
+            <img src="/assets/icons/instagram-circle.svg" alt="" width="36" height="36" loading="lazy" />
+            <span class="visually-hidden">Instagram {site.instagramHandle}</span>
           </a>
-          <span>© {currentYear}</span>
+          <a
+            class="site-footer__action"
+            href={`mailto:${site.contactEmail}`}
+            aria-label={`Enviar un correo a ${site.name}`}
+            title={`Escribir a ${site.contactEmail}`}
+          >
+            <img src="/assets/icons/mail-circle.svg" alt="" width="36" height="36" loading="lazy" />
+            <span class="visually-hidden">Enviar correo a {site.contactEmail}</span>
+          </a>
+          <span class="site-footer__copyright">© {currentYear}</span>
         </div>
       </div>
     </footer>
@@ -145,7 +145,16 @@ const serializedStructuredData = structuredDataItems.map((item) =>
 </html>
 
 <style>
+  .site-header__bar {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
   .site-brand {
+    min-width: 0;
     align-items: center;
     flex-direction: row;
     gap: 0.85rem;
@@ -160,31 +169,122 @@ const serializedStructuredData = structuredDataItems.map((item) =>
 
   .site-brand__text {
     display: inline-flex;
+    min-width: 0;
     flex-direction: column;
     gap: 0.15rem;
   }
 
-  .site-footer__brand {
-    display: inline-flex;
+  .site-footer__inner {
+    display: flex;
+    flex-wrap: nowrap;
     align-items: center;
-    gap: 0.8rem;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 1.45rem 1.65rem;
   }
 
-  .site-footer__mark {
-    width: 46px;
-    height: 46px;
+  .site-footer__name {
+    flex: 0 1 auto;
+    min-width: 0;
+    margin: 0;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .site-footer__meta {
+    display: flex;
     flex: 0 0 auto;
-    object-fit: contain;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.42rem;
+    margin-left: auto;
   }
 
-  @media (max-width: 620px) {
+  .site-footer__action {
+    display: inline-grid;
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    place-items: center;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .site-footer__action img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .site-footer__action:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(31, 36, 33, 0.1);
+  }
+
+  .site-footer__copyright {
+    margin-left: 0.28rem;
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 920px) {
+    .site-header__inner {
+      padding-block: 0.5rem;
+    }
+
+    .site-header__bar {
+      min-height: 54px;
+      gap: 0.65rem;
+    }
+
     .site-brand {
+      flex: 1 1 auto;
       gap: 0.65rem;
     }
 
     .site-brand__mark {
       width: 46px;
       height: 46px;
+    }
+
+    .site-brand__name {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  @media (max-width: 430px) {
+    .site-brand__mark {
+      width: 40px;
+      height: 40px;
+    }
+
+    .site-brand__name {
+      font-size: 0.98rem;
+    }
+
+    .site-footer__inner {
+      justify-content: flex-end;
+      gap: 0;
+      padding-block: 1.3rem 1.45rem;
+    }
+
+    .site-footer__name {
+      display: none;
+    }
+
+    .site-footer__meta {
+      margin-left: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-footer__action {
+      transition: none;
     }
   }
 </style>

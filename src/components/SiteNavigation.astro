@@ -24,16 +24,199 @@ const isActive = (label: string, href: string) => {
 };
 ---
 
-<nav class="site-nav" aria-label="Navegación principal">
-  <ul>
+<nav class="site-nav" aria-label="Navegación principal" data-site-nav>
+  <button
+    class="site-nav__toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="site-navigation-list"
+  >
+    <svg class="site-nav__toggle-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </svg>
+    <span class="site-nav__toggle-label">Menú</span>
+  </button>
+
+  <ul id="site-navigation-list" class="site-nav__list">
     {
       navigation.map((item) => (
         <li>
-          <a href={item.href} aria-current={isActive(item.label, item.href) ? 'page' : undefined}>
-            {item.label}
+          <a
+            class="site-nav__link"
+            href={item.href}
+            aria-current={isActive(item.label, item.href) ? 'page' : undefined}
+          >
+            <span class="site-nav__label">{item.label}</span>
           </a>
         </li>
       ))
     }
   </ul>
 </nav>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('[data-site-nav]');
+
+  if (nav && nav.dataset.enhanced !== 'true') {
+    const toggle = nav.querySelector<HTMLButtonElement>('.site-nav__toggle');
+    const label = nav.querySelector<HTMLElement>('.site-nav__toggle-label');
+    const links = nav.querySelectorAll<HTMLAnchorElement>('.site-nav__list a');
+    const desktop = window.matchMedia('(min-width: 921px)');
+
+    nav.dataset.enhanced = 'true';
+    nav.dataset.open = 'false';
+
+    const setOpen = (open: boolean) => {
+      nav.dataset.open = String(open);
+      toggle?.setAttribute('aria-expanded', String(open));
+      if (label) label.textContent = open ? 'Cerrar' : 'Menú';
+    };
+
+    toggle?.addEventListener('click', () => {
+      setOpen(nav.dataset.open !== 'true');
+    });
+
+    links.forEach((link) => link.addEventListener('click', () => setOpen(false)));
+
+    document.addEventListener('click', (event) => {
+      if (nav.dataset.open === 'true' && event.target instanceof Node && !nav.contains(event.target)) {
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && nav.dataset.open === 'true') {
+        setOpen(false);
+        toggle?.focus();
+      }
+    });
+
+    desktop.addEventListener('change', (event) => {
+      if (event.matches) setOpen(false);
+    });
+  }
+</script>
+
+<style>
+  .site-nav__toggle {
+    display: none;
+  }
+
+  .site-nav__toggle-icon {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-width: 1.8;
+  }
+
+  .site-nav__link::after {
+    display: none;
+  }
+
+  .site-nav__label {
+    position: relative;
+    display: inline-block;
+  }
+
+  .site-nav__label::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -0.18rem;
+    left: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 160ms ease;
+  }
+
+  .site-nav__link:hover .site-nav__label::after,
+  .site-nav__link[aria-current='page'] .site-nav__label::after {
+    transform: scaleX(1);
+  }
+
+  @media (max-width: 920px) {
+    .site-nav[data-enhanced='true'] {
+      position: relative;
+      width: auto;
+      min-width: 0;
+      margin: 0;
+      overflow: visible;
+      flex: 0 0 auto;
+    }
+
+    .site-nav[data-enhanced='true'] .site-nav__toggle {
+      display: inline-flex;
+      min-height: 40px;
+      align-items: center;
+      justify-content: center;
+      gap: 0.42rem;
+      padding: 0.5rem 0.72rem;
+      border: 1px solid color-mix(in srgb, var(--accent) 36%, var(--line));
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--surface) 82%, transparent);
+      color: var(--ink);
+      font-size: 0.86rem;
+      font-weight: 750;
+      line-height: 1;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .site-nav[data-enhanced='true'] .site-nav__toggle:hover,
+    .site-nav[data-enhanced='true'] .site-nav__toggle:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .site-nav[data-enhanced='true'] .site-nav__list {
+      position: absolute;
+      top: calc(100% + 0.65rem);
+      right: 0;
+      z-index: 80;
+      display: none;
+      width: min(300px, calc(100vw - 1.4rem));
+      min-width: 230px;
+      margin: 0;
+      padding: 0.65rem 0.85rem;
+      overflow: visible;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: color-mix(in srgb, var(--surface) 97%, var(--page));
+      box-shadow: 0 20px 48px rgba(31, 36, 33, 0.14);
+      list-style: none;
+    }
+
+    .site-nav[data-enhanced='true'][data-open='true'] .site-nav__list {
+      display: grid;
+      gap: 0.08rem;
+    }
+
+    .site-nav[data-enhanced='true'] .site-nav__list li {
+      width: 100%;
+      padding: 0;
+    }
+
+    .site-nav[data-enhanced='true'] .site-nav__link {
+      display: inline-flex;
+      width: fit-content;
+      min-height: 42px;
+      align-items: center;
+      padding: 0.35rem 0;
+      white-space: nowrap;
+    }
+
+    .site-nav[data-enhanced='true'] .site-nav__label::after {
+      bottom: 0.18rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-nav__label::after {
+      transition: none;
+    }
+  }
+</style>
